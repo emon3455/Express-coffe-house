@@ -34,6 +34,7 @@ const AddCoffe = () => {
                     confirmButtonText: 'ok'
                   })
             }
+            form.reset();
         })
         .catch(er=>{
             console.log(er.message);
