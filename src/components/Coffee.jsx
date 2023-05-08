@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
-const Coffee = ({ coffe }) => {
+const Coffee = ({ coffe , coffes, setCoffes }) => {
 
     const { _id, name, chef, suplier, photo } = coffe;
 
@@ -32,6 +33,8 @@ const Coffee = ({ coffe }) => {
                             'Your coffe has been deleted.',
                             'success'
                         );
+                        const remaining = coffes.filter(cf=> cf._id !== _id);
+                        setCoffes(remaining);
                     }
                     else{
                         Swal.fire({
@@ -59,7 +62,9 @@ const Coffee = ({ coffe }) => {
                 </div>
                 <div className="btn-group btn-group-vertical space-y-1 w-1/3">
                     <button className="btn btn-active">View</button>
-                    <button className="btn">Update</button>
+                    <Link to={`/updateCoffe/${_id}`}>
+                        <button className="btn w-full">Update</button>
+                    </Link>
                     <button onClick={()=>handleDelete(_id)} className="btn btn-warning"> X </button>
                 </div>
             </div>
